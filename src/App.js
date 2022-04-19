@@ -12,7 +12,7 @@ function App() {
   useEffect(() => {
     (async () => {
       try {
-        const response = await axios.get("http://localhost:3001/items/table")
+        const response = await axios.get("https://damon-to-do-list.herokuapp.com/items/table")
         setItems(response.data)
       } catch (err) {
         console.log(err)
@@ -22,7 +22,7 @@ function App() {
 
   const handleClick = async (statusChange, id) => {
     try {
-      const response = await axios.put(`http://localhost:3001/items/${id}`, {
+      const response = await axios.put(`https://damon-to-do-list.herokuapp.com/items/${id}`, {
         status: statusChange
       })
 
@@ -40,7 +40,7 @@ function App() {
     evt.preventDefault();
 
     try {
-      const response = await axios.post('http://localhost:3001/items', {
+      const response = await axios.post('https://damon-to-do-list.herokuapp.com/items', {
         entry: entry.current.value,
         status: "TO-DO",
       });
@@ -52,7 +52,7 @@ function App() {
 
   const handleDelete = async (id) => {
     try {
-      const response = await axios.delete(`http://localhost:3001/items/${id}`)
+      const response = await axios.delete(`https://damon-to-do-list.herokuapp.com/items/${id}`)
       if (response.status === 200) {
         setButtonPressed(!buttonPressed)
       } else {
