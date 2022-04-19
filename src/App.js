@@ -50,6 +50,19 @@ function App() {
     }
   };
 
+  const handleDelete = async (id) => {
+    try {
+      const response = await axios.delete(`http://localhost:3001/items/${id}`)
+      if (response.status === 200) {
+        setButtonPressed(!buttonPressed)
+      } else {
+        console.log("Delete function not working.")
+      }
+    } catch (err) {
+      console.log(err)
+    }
+  };
+
   return (
     <div className="App">
       <div className="container">
@@ -80,6 +93,7 @@ function App() {
                       <Link to={`/${item._id}`}>{item.entry}</Link>
                       <div>
                         <button onClick={() => { handleClick("COMPLETED", item._id) }} className="button">Completed</button>
+                        <button onClick={() => { handleDelete(item._id) }} className="button">Delete</button>
                       </div>
                     </div>
                   )
@@ -96,7 +110,7 @@ function App() {
                       <Link to={`/${item._id}`}>{item.entry}</Link>
                       <div>
                         <button onClick={() => { handleClick("TO-DO", item._id) }} className="button">To-Do</button>
-
+                        <button onClick={() => { handleDelete(item._id) }} className="button">Delete</button>
                       </div>
                     </div>
                   )
